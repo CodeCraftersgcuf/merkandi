@@ -25,7 +25,7 @@ const NavBar = () => {
 
   return (
     <div className="bg-[#2a2a2a] lg:px-24">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center max-w-[1280px]">
         <div className="flex items-center gap-6">
           {/* Buyer Dropdown */}
           <div
@@ -60,7 +60,7 @@ const NavBar = () => {
               </ul>
             )}
           </div>
-  
+
           {/* Seller Dropdown */}
           <div
             className="relative"
@@ -94,7 +94,7 @@ const NavBar = () => {
               </ul>
             )}
           </div>
-  
+
           {/* Contact Link */}
           <Link
             to="/contact"
@@ -125,11 +125,9 @@ const NavBar = () => {
                 { label: "INR", icon: "fa-rupee-sign" },
               ].map((currency, index) => (
                 <li key={index}>
-                  <Link
-                    className="block px-4 py-2 hover:bg-gray-300"
-                    to="#"
-                  >
-                    <i className={`fas ${currency.icon} mr-1`}></i> {currency.label}
+                  <Link className="block px-4 py-2 hover:bg-gray-300" to="#">
+                    <i className={`fas ${currency.icon} mr-1`}></i>{" "}
+                    {currency.label}
                   </Link>
                 </li>
               ))}

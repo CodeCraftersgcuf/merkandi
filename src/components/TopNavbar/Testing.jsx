@@ -14,7 +14,7 @@ const Testing = () => {
 
   return (
     <nav className="bg-[#299BCC] px-4 py-3 shadow-md">
-      <div className="container mx-auto">
+      <div className="container max-w-[1280px] mx-auto">
         {/* Desktop Navbar */}
         <div className="flex items-center justify-between">
           {/* Left Section */}
@@ -36,7 +36,7 @@ const Testing = () => {
                 </ul>
               )}
             </div>
-  
+
             {/* Main Links */}
             <div className="hidden lg:flex gap-6">
               {["Products", "Stocks", "Wholesalers", "Top Offers"].map(
@@ -52,7 +52,7 @@ const Testing = () => {
               )}
             </div>
           </div>
-  
+
           {/* Right Section */}
           <div className="hidden lg:block">
             <a
@@ -62,7 +62,7 @@ const Testing = () => {
               Add offers <i className="fa-solid fa-plus ml-2"></i>
             </a>
           </div>
-  
+
           {/* Mobile Menu Toggle */}
           <button
             className="lg:hidden text-white text-2xl"
@@ -71,11 +71,10 @@ const Testing = () => {
             <i className={`fa-solid ${isMenuOpen ? "fa-xmark" : "fa-bars"}`} />
           </button>
         </div>
-  
+
         {/* Mobile Dropdown */}
         {isMenuOpen && (
           <div className="mt-4 lg:hidden bg-[#1d7094] text-white rounded-lg shadow-lg">
-  
             <div className="px-6 py-4">
               {["Products", "Stocks", "Wholesalers", "Top Offers"].map(
                 (link, index) => (
@@ -89,7 +88,7 @@ const Testing = () => {
                 )
               )}
             </div>
-  
+
             <div className="px-6 py-4">
               <a
                 href="#"
