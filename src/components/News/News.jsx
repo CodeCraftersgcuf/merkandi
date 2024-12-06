@@ -66,11 +66,11 @@ const News = () => {
                 )}
               </div>
 
-              <button className="bg-yellow-500 text-white px-4 py-2 w-full md:w-auto 2xl:py-3">
+              <button className="bg-yellow-500 text-white px-2 py-2 w-full md:w-auto 2xl:py-3">
                 Subscribe me
               </button>
             </div>
-            <p className="text-gray-400 max-w-[450px] mt-3 md:mt-0">
+            <p className="text-gray-400 max-w-[450px] mt-6">
               By subscribing to our newsletter, you consent to the processing of
               your personal data for marketing purposes.
             </p>
