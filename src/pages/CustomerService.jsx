@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TopNavbar from "../components/TopNavbar/TopNavbar";
 import Footer from "../components/Footer/Footer";
 import News from "../components/News/News";
+import CustomerServiceInput from "../components/CustomerServiceInput";
 
 const CustomerService = () => {
   const [formData, setFormData] = useState({
@@ -89,62 +90,30 @@ const CustomerService = () => {
               <h2 className="text-xl font-semibold mb-4">Contact form</h2>
               <form onSubmit={handleSubmit}>
                 <div className="space-y-4">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-semibold mb-1"
-                    >
-                      Name and surname
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Type your name and surname"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-semibold mb-1"
-                    >
-                      Email address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Type your email address"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-semibold mb-1"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Your message"
-                      rows="4"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <p className="text-sm text-gray-500 mt-1">
-                      Type at least: 100 characters more
-                    </p>
-                  </div>
+                  <CustomerServiceInput
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    handleChange={handleChange}
+                    placeholder="Type your name and surname"
+                  />
+                  <CustomerServiceInput
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    handleChange={handleChange}
+                    placeholder="Type your email address"
+                    type="email"
+                  />
+                  <CustomerServiceInput
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    handleChange={handleChange}
+                    placeholder="Your message"
+                    rows="4"
+                    type="textarea"
+                  />
 
                   <div className="flex items-center space-x-2">
                     <input

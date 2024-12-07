@@ -66,7 +66,7 @@ const News = () => {
                 )}
               </div>
 
-              <button className="bg-yellow-500 text-white px-2 py-2 w-full md:w-auto 2xl:py-3">
+              <button className="bg-yellow-500 text-white px-2 py-2 w-full md:w-auto ">
                 Subscribe me
               </button>
             </div>
