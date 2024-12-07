@@ -53,7 +53,7 @@ const Product_Swipper = ({ heading, link, products }) => {
               {products.map((product, index) => {
                 return (
                   <SwiperSlide key={index}>
-                    <Product_component product={product} cardHeight={"400px"} />
+                    <Product_component product={product} cardHeight={"400px"}  link={"/"}/>
                   </SwiperSlide>
                 );
               })}

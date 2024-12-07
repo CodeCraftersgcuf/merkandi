@@ -3,10 +3,37 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
-
+import SellerInput from "../../components/SellerInput";
+import DataForm from "../../components/DataForm";
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    regularPrice: "",
+    salePrice: "",
+    wholesale: false,
+    negotiable: false,
+    productBadges: "",
+    minimalOrder: "",
+    productStock: 0,
+    stockStatus: "in stock",
+    sku: "",
+    ean: "",
+  });
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return (
     <>
@@ -45,6 +72,89 @@ const Layout = () => {
             </div>
             <Outlet />
           </div>
+
+          <DataForm/>
+
+
+          <form onSubmit={handleSubmit} className="px-7 mt-6">
+            <div className="">
+              <h3 className="font-bold text-lg">Price</h3>
+              <SellerInput
+                label="Regular price ($)"
+                type="number"
+                name="regularPrice"
+                value={formData.regularPrice}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Sale price ($)"
+                type="number"
+                name="salePrice"
+                value={formData.salePrice}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Wholesale"
+                type="checkbox"
+                name="wholesale"
+                checked={formData.wholesale}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="NEGOTIABLE"
+                type="checkbox"
+                name="negotiable"
+                checked={formData.negotiable}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Product badges"
+                type="select"
+                name="productBadges"
+                options={["piece", "Damaged", "New"]}
+                value={formData.productBadges}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Minimal order"
+                type="number"
+                name="minimalOrder"
+                value={formData.minimalOrder}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Product Stock"
+                type="number"
+                name="productStock"
+                value={formData.productStock}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="Stock status"
+                type="select"
+                name="stockStatus"
+                options={["in stock", "out of stock"]}
+                value={formData.stockStatus}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="SKU"
+                type="text"
+                name="sku"
+                value={formData.sku}
+                onChange={handleChange}
+              />
+              <SellerInput
+                label="EAN"
+                type="text"
+                name="ean"
+                value={formData.ean}
+                onChange={handleChange}
+              />
+            </div>
+          </form>
+
+          
         </div>
       </div>
       <Footer />

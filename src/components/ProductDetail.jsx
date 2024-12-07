@@ -26,9 +26,9 @@ const ProductDetail = ({
         <button className="w-full bg-yellow py-2 text-2xl font-extrabold text-white">
           {orderButtonLabel}
         </button>
-        <button className="border-2 border-[#f29d00] mt-4 py-2 px-7 text-[#f29d00] hover:bg-[#f29d00] hover:text-white">
+        {/* <button className="border-2 border-[#f29d00] mt-4 py-2 px-7 text-[#f29d00] hover:bg-[#f29d00] hover:text-white">
           {addToCartLabel}
-        </button>
+        </button> */}
       </div>
 
       <hr className="my-4" />

@@ -1,7 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Section from "../../components/Section";
 const Sidebar = ({ setMobileOpen }) => {
+  const sections = [
+    {
+      title: "Menu",
+      links: [
+        { to: "/dashboard", label: "Dashboard", icon: "fa-solid fa-gauge" },
+        {
+          to: "/products",
+          label: "Products",
+          icon: "fa-brands fa-product-hunt",
+        },
+        { to: "/orders", label: "Orders", icon: "fa-solid fa-boxes-packing" },
+      ],
+    },
+    {
+      title: "Services",
+      links: [
+        { to: "#", label: "Service", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Service add", icon: "fa-solid fa-gauge" },
+      ],
+    },
+    {
+      title: "Shopping",
+      links: [
+        { to: "#", label: "Products", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Wholeseller", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Search Results", icon: "fa-solid fa-gauge" },
+      ],
+    },
+    {
+      title: "Seller",
+      links: [
+        { to: "#", label: "Products", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Products add", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Phone", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Search Results", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "WhatsApp", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Other", icon: "fa-solid fa-gauge" },
+        { to: "#", label: "Order", icon: "fa-solid fa-gauge" },
+      ],
+    },
+    {
+      title: "Account Managment",
+      links:[
+        {to: "#", label: "My Data", icon: "fa-solid fa-gauge"},
+        {to: "#", label: "Notification", icon: "fa-solid fa-gauge"},
+        {to: "#1", label: "Orders and Invoices", icon: "fa-solid fa-gauge"},
+      ]
+    }
+  ];
   return (
     <div className="bg-white border-r min-h-screen mr-4">
       {/* Close button for mobile */}
@@ -37,34 +86,14 @@ const Sidebar = ({ setMobileOpen }) => {
           </button>
         </Link>
       </div>
-
-      {/* Menu */}
-      <div className="mt-6">
-        <h1 className="font-extrabold text-lg mb-4">Menu</h1>
-        <nav className="flex flex-col gap-3">
-          <Link
-            to="/dashboard"
-            className="flex items-center gap-3 text-gray-500 hover:text-black"
-          >
-            <i className="fa-solid fa-gauge"></i>
-            Dashboard
-          </Link>
-          <Link
-            to="/products"
-            className="flex items-center gap-3 text-gray-500 hover:text-black"
-          >
-            <i className="fa-brands fa-product-hunt"></i>
-            Products
-          </Link>
-          <Link
-            to="/orders"
-            className="flex items-center gap-3 text-gray-500 hover:text-black"
-          >
-            <i className="fa-solid fa-boxes-packing"></i>
-            Orders
-          </Link>
-        </nav>
-      </div>
+      {/* Sidebar content */}
+      {sections.map((section, index) => (
+        <Section key={index} title={section.title} links={section.links} />
+      ))}
+         <button className="flex items-center gap-3 text-red-500 px-1 mb-3 hover:text-black border-y-2 py-2 border-l-2 mt-4 w-full">
+         <i className="fa-solid fa-user text-2xl text-black"></i>
+         Logout
+        </button>
     </div>
   );
 };

@@ -25,7 +25,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/buyer" element={<Buyer />} />
-          <Route path="/seller" element={<Seller />} />
+          <Route path="/sellerinfo" element={<Seller />} />
           <Route path="/:id/product_view" element={<ProductView />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register/form" element={<RegisterForm />} />
@@ -34,7 +34,7 @@ const App = () => {
           <Route path="/conditions" element={<Condition />} />
           <Route path="/contact" element={<CustomerService />} />
 
-          <Route path="/admin" element={<Layout />}>
+          <Route path="/seller" element={<Layout />}>
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
