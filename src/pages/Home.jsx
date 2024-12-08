@@ -15,40 +15,95 @@ import { products } from "../utils/products";
 import Footer from "../components/Footer/Footer";
 import News from "../components/News/News";
 import Product_component from "./pageComponents/Product_component";
-import { getAllProducts } from "../utils/mutations/productMutation";
+import {
+  getAllProducts,
+  weeklyBestProduct,
+  mostPopularProduct,
+  recentAddProduct,
+} from "../utils/mutations/productMutation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import PopularSearches from "../components/PopularSearches";
 import RecentlyAdded from "../components/RecentlyAdded";
 import ActionCard from "../components/ActionCard";
-
-
+import useFetchProducts from "../hooks/useFetchProducts";
 const Home = () => {
-  const [weeklyProducts, setWeeklyProducts] = useState([]); // State to store the response
+  // const {
+  //   data: weeklyProducts = [],
+  //   isLoading,
+  //   isError,
+  // } = useQuery({
+  //   queryKey: ["weeklyProducts"], // Query key
+  //   queryFn: weeklyBestProduct, // Function to fetch data
+  //   onSuccess: (response) => {
+  //     if (response?.status !== "success" || !Array.isArray(response.data)) {
+  //       console.error("Unexpected API response format", response);
+  //       return []; // Log error and return an empty array
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error fetching products:", error); // Handle error
+  //   },
+  //   select: (response) => response?.data || [], // Directly return data array if valid
+  // });
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["weeklyProducts"], // Query key
-    queryFn: getAllProducts, // Function to fetch data
-    onSuccess: (response) => {
-      if (response?.status === "success" && Array.isArray(response.data)) {
-        setWeeklyProducts(response.data); // Extract and set the data array
-      } else {
-        console.error("Unexpected API response format", response);
-        setWeeklyProducts([]); // Set to an empty array as fallback
-      }
-    },
-    onError: (error) => {
-      console.error("Error fetching products:", error);
-      setWeeklyProducts([]); // Handle error and fallback to an empty array
-    },
-  });
+  // const {
+  //   data: mostPopular = [],
+  //   isLoading: mostPopularLoading,
+  //   isError: mostPopularError,
+  // } = useQuery({
+  //   queryKey: ["mostPopular"], // Query key
+  //   queryFn: mostPopularProduct, // Function to fetch data
+  //   onSuccess: (response) => {
+  //     if (response?.status !== "success" || !Array.isArray(response.data)) {
+  //       console.error("Unexpected API response format", response);
+  //       return []; // Log error and return an empty array
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error fetching products:", error); // Handle error
+  //   },
+  //   select: (response) => response?.data || [], // Directly return data array if valid
+  // });
 
-  useEffect(() => {
-    if (data?.status === "success") {
-      setWeeklyProducts(data.data);
-    }
-  }, [data]);
+  // const {
+  //   data: mostRecent = [],
+  //   isLoading: mostRecentLoading,
+  //   isError: mostRecentError,
+  // } = useQuery({
+  //   queryKey: ["mostRecent"], // Query key
+  //   queryFn: recentAddProduct, // Function to fetch data
+  //   onSuccess: (response) => {
+  //     if (response?.status !== "success" || !Array.isArray(response.data)) {
+  //       console.error("Unexpected API response format", response);
+  //       return []; // Log error and return an empty array
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error fetching products:", error); // Handle error
+  //   },
+  //   select: (response) => response?.data || [], // Directly return data array if valid
+  // });
 
   // console.log(products)
+
+  const {
+    data: weeklyProducts = [],
+    isLoading: weeklyLoading,
+    isError: weeklyError,
+  } = useFetchProducts(["weeklyProducts"], weeklyBestProduct);
+
+  const {
+    data: mostPopular = [],
+    isLoading: mostPopularLoading,
+    isError: mostPopularError,
+  } = useFetchProducts(["mostPopular"], mostPopularProduct);
+
+  const {
+    data: mostRecent = [],
+    isLoading: mostRecentLoading,
+    isError: mostRecentError,
+  } = useFetchProducts(["mostRecent"], recentAddProduct);
+
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [selectedCategories, setSelectedCategories] = React.useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
@@ -185,13 +240,13 @@ const Home = () => {
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 ">
-              {products.map((product, index) => {
+              {mostPopular.map((product, index) => {
                 return (
                   <div
                     className="shadow-md shadow-gray-300 border-none outline-none hover:outline-4 hover:outline-[#ddd] hover: overflow-hidden"
                     key={index}
                   >
-                    <Product_component
+                    <CustomProductComponent
                       product={product}
                       cardHeight={"500px"}
                       Card2xl="600px"
@@ -212,13 +267,16 @@ const Home = () => {
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {products.slice(0, 4).map((product, index) => {
+              {mostRecent.map((product, index) => {
                 return (
                   <div
                     className="shadow-md shadow-gray-300 rounded-lg overflow-hidden"
                     key={index}
                   >
-                    <Product_component product={product} cardHeight="500px" />
+                    <CustomProductComponent
+                      product={product}
+                      cardHeight="500px"
+                    />
                   </div>
                 );
               })}
