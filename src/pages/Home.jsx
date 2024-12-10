@@ -140,7 +140,7 @@ const Home = () => {
         : [...prev, category]
     );
   };
-
+console.log(weeklyProducts);
   return (
     <>
       <div>

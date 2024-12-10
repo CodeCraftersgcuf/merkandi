@@ -7,18 +7,21 @@ const CustomProductComponent = ({
   Card2xl = "500px",
 }) => {
   const dynamicHeightClass = `min-h-[${cardHeight}]`;
+  console.log("The Image")
   return (
     <div className="group transition-transform duration-300 transform hover:-translate-y-3 hover:scale-105">
+      <h1>{product[1]?.images?.[0]?.image}</h1>
       <Link to={`/${product.id}/product_view`}>
-        <img
-          src={
-            product.category?.image
-              ? `https://lot24.ma/uploads/${product.category.image}`
-              : "default-image.jpg"
-          } // Use `image` from the category or a default placeholder
-          alt="product imgs"
-          className="w-full min-h-[200px] max-h-[400px]"
-        />
+      <img
+  src={
+    product.images[0]?.image
+      ? `https://lot24.ma/${product.images[0]?.image}`
+      : "default-image.jpg" // Fallback image if no valid image exists
+  }
+  alt="product image"
+  className="w-full min-h-[200px] max-h-[400px]"
+/>
+
         <div className="p-2 flex gap-2 flex-col m-3">
           <p className="text-sm font-bold text-gray-500">
             <span className="text-red-600">
