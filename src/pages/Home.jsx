@@ -85,29 +85,34 @@ const Home = () => {
   // });
 
   // console.log(products)
-
   const {
     data: weeklyProducts = [],
     isLoading: weeklyLoading,
     isError: weeklyError,
   } = useFetchProducts(["weeklyProducts"], weeklyBestProduct);
-
+  
   const {
     data: mostPopular = [],
     isLoading: mostPopularLoading,
     isError: mostPopularError,
   } = useFetchProducts(["mostPopular"], mostPopularProduct);
-
+  
   const {
     data: mostRecent = [],
     isLoading: mostRecentLoading,
     isError: mostRecentError,
   } = useFetchProducts(["mostRecent"], recentAddProduct);
-
+  
+  const {
+    data: allProducts = [],
+    isLoading: allProductsLoading,
+    isError: allProductsError,
+  } = useFetchProducts(["allProducts"], getAllProducts); // Removed extra closing brace here
+  
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [selectedCategories, setSelectedCategories] = React.useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-
+  
   const searches = [
     "Wholesale TV Mounts",
     "Buy iPhone Xs Max In Bulk",
@@ -116,6 +121,7 @@ const Home = () => {
     "Wholesale pajamas",
     "Wholesale Work Boots Distributors",
   ];
+  
   const recentlyProducts = [
     {
       description:
@@ -133,6 +139,7 @@ const Home = () => {
       userName: "John Doe",
     },
   ];
+  
   const toggleCategory = (category) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
@@ -140,7 +147,9 @@ const Home = () => {
         : [...prev, category]
     );
   };
-console.log(weeklyProducts);
+  
+  console.log(weeklyProducts);
+  
   return (
     <>
       <div>
@@ -305,13 +314,13 @@ console.log(weeklyProducts);
             {/* Product List */}
             <div className="lg:w-3/4 px-3">
               <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {products.map((product, index) => {
+                {allProducts.map((product, index) => {
                   return (
                     <div
                       className="shadow-md shadow-gray-300 rounded-lg overflow-hidden"
                       key={index}
                     >
-                      <Product_component product={product} />
+                      <CustomProductComponent product={product} />
                     </div>
                   );
                 })}

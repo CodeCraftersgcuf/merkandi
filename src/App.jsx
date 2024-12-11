@@ -15,6 +15,7 @@ import CustomerService from "./pages/CustomerService";
 import Layout from "./admin/layout/Layout";
 import Dashboard from "./admin/dashboard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BuyerPage } from "./pages/BuyerPage";
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/buyer" element={<Buyer />} />
+          <Route path="/buyerinfo" element={<Buyer />} />
           <Route path="/sellerinfo" element={<Seller />} />
           <Route path="/:id/product_view" element={<ProductView />} />
           <Route path="/login" element={<Login />} />
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/payments/cards" element={<CardPayment />} />
           <Route path="/conditions" element={<Condition />} />
           <Route path="/contact" element={<CustomerService />} />
+          <Route path="/buyer" element={<BuyerPage />} />
 
           <Route path="/seller" element={<Layout />}>
             <Route path="dashboard" element={<Dashboard />} />
